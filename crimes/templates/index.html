@@ -1,0 +1,13 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+</head>
+<body>
+    <h1> Załóż konto a następnie zaloguj się aby wyświetlić dane</h1>
+    <a href="{% url 'login' %}">Zaloguj się</a>
+    <a href="{% url 'sign_up' %}">Nie masz konta, Zarejestruj się</a>
+</body>
+</html>

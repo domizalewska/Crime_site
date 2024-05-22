@@ -1,0 +1,35 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dane</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <title>Wykres przestępstw</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#generateButton").click(function(){
+                $.ajax({
+                    url: "{% url 'generate_wykres' %}",
+                    type: "GET",
+                    success: function(data){
+                        $("#wykres").attr("src", data.image_url);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>Tu będą dane</h2>
+    Hi {{ user.username }}!
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Log Out</button>
+    </form>
+    <h1>Wykres liczby przestępstw w poszczególnych latach</h1>
+    <button id="generateButton">Generuj Wykres</button>
+    <br>
+    <img id="wykres" src="" alt="Wykres przestępstw">
+</body>
+</html>
